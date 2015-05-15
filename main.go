@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 func main() {
@@ -31,21 +32,26 @@ func Transliterate(args []string) []string {
 }
 
 func translit(word string) string {
+	fixed := commonFix(word)
 	var ret string
-	for _, letter := range word {
-		ret += table[letter]
+	for _, letter := range fixed {
+		r := table[letter]
+		if r == "" {
+			r = string(letter)
+		}
+		ret += r
 	}
 	return ret
 }
 
 func Usage() {
-	fmt.Println(`Usage: пщ буилд -> go build
+	fmt.Println(`Usage: пщ билд -> go build
 
 Пше гіт версіон 0.2
 
 Используйте транслитерированные команды, например:
  - пщ гет гитхаб.ком/диван/гофреш
- - пщ буилд
+ - пщ билд
  - пщ инсталл
  - пщ тест`)
 
@@ -90,4 +96,10 @@ var table = map[rune]string{
 	'ї': "yi",
 	'є': "e",
 	'і': "i",
+}
+
+func commonFix(word string) string {
+	ret := strings.Replace(word, "гитхаб.ком", "github.com", -1)
+	ret = strings.Replace(ret, "билд", "build", -1)
+	return ret
 }
