@@ -1,6 +1,6 @@
 # Пщ
 
-Пщ - комманд алиас фо Go.
+Пщ - комманд алиас фоr Go.
 Inspired by ["пше гит" by Soloviev](https://gist.github.com/piranha/6319369).
 
 ## Install
