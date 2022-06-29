@@ -45,14 +45,14 @@ func translit(word string) string {
 }
 
 func Usage() {
-	fmt.Println(`Usage: пщ билд -> go build
+	fmt.Println(`Usage: пщ білд -> go build
 
-Пщ версион 1.0
+Пщ версіон 1.0
 
-Используйте транслитерированные команды, например:
- - пщ гет гитхаб.ком/диван/гофреш
- - пщ билд
- - пщ инсталл
+Використовуйте транслітеровані команди, на кшталт:
+ - пщ гет гітхаб.ком/діван/гофреш
+ - пщ білд
+ - пщ інсталл
  - пщ тест`)
 
 	os.Exit(0)
@@ -63,13 +63,16 @@ var table = map[rune]string{
 	'б': "b",
 	'в': "v",
 	'г': "g",
+        'ґ': "g",
 	'д': "d",
 	'е': "e",
-	'ё': "e",
+	'є': "e",
 	'ж': "zh",
 	'з': "z",
-	'и': "i",
-	'й': "j",
+	'и': "y",
+	'і': "i",
+	'ї': "yi",
+	'й': "y",
 	'к': "k",
 	'л': "l",
 	'м': "m",
@@ -86,20 +89,13 @@ var table = map[rune]string{
 	'ч': "ch",
 	'ш': "sh",
 	'щ': "sch",
-	'ъ': "'",
-	'ы': "y",
 	'ь': "'",
-	'э': "e",
 	'ю': "yu",
 	'я': "ya",
-	'ї': "yi",
-	'є': "e",
-	'і': "i",
-	'ґ': "g",
 }
 
 func commonFix(word string) string {
-	ret := strings.Replace(word, "гитхаб.ком", "github.com", -1)
-	ret = strings.Replace(ret, "билд", "build", -1)
+	ret := strings.Replace(word, "гітхаб.ком", "github.com", -1)
+	ret = strings.Replace(ret, "білд", "build", -1)
 	return ret
 }
